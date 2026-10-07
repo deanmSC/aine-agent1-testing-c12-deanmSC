@@ -1,0 +1,64 @@
+/* Design Tokens for Team Members App */
+:root {
+  /* Color tokens */
+  --color-accent: #2563eb;
+  --color-on-accent: #ffffff;
+  
+  /* Radius tokens */
+  --radius-control: 6px;
+  --radius-card: 12px;
+  --radius-chip: 16px;
+  
+  /* Spacing tokens */
+  --space-row: 12px;
+  
+  /* Text tokens */
+  --text-title: 24px;
+  
+  /* Header style */
+  --header-style: accent;
+  
+  /* Additional color tokens for the app */
+  --color-background: #ffffff;
+  --color-surface: #f8fafc;
+  --color-border: #e2e8f0;
+  --color-text-primary: #0f172a;
+  --color-text-secondary: #64748b;
+  --color-success: #10b981;
+  --color-warning: #f59e0b;
+  --color-error: #ef4444;
+  --color-info: #3b82f6;
+  --color-pending: #f59e0b;
+  --color-approved: #10b981;
+  --color-rejected: #ef4444;
+  
+  /* Additional spacing */
+  --space-xs: 4px;
+  --space-sm: 8px;
+  --space-md: 16px;
+  --space-lg: 24px;
+  --space-xl: 32px;
+  
+  /* Typography */
+  --text-xs: 12px;
+  --text-sm: 14px;
+  --text-base: 16px;
+  --text-lg: 18px;
+  --text-xl: 20px;
+  
+  /* Shadows */
+  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+}
+
+/* Accent header styling */
+:root[data-studio-header="accent"] {
+  --header-background: var(--color-accent);
+  --header-text: var(--color-on-accent);
+}
+
+:root[data-studio-header="light"] {
+  --header-background: #ffffff;
+  --header-text: var(--color-text-primary);
+}
