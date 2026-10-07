@@ -1,0 +1,1072 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Project Planner - Agent Zero Studio</title>
+  <link rel="stylesheet" href="src/theme/tokens.css">
+  <link rel="stylesheet" href="src/styles/main.css">
+</head>
+<body>
+  <!-- Projects List Screen -->
+  <div data-studio-screen="projects-list" data-studio-screen-name="Projects List" data-studio-draft>
+    
+    <!-- Header -->
+    <header 
+      data-studio-id="header-main"
+      data-studio-type="header"
+      data-studio-name="Main Header"
+      data-studio-source="index.html:16"
+      data-studio-tokens="color.accent color.on-accent">
+      <h1 
+        data-studio-id="header-title"
+        data-studio-type="heading"
+        data-studio-name="Header Title"
+        data-studio-source="index.html:23"
+        data-studio-tokens="text.title"
+        data-studio-text="header.title">Project Planner</h1>
+      <button 
+        class="btn-new-project"
+        data-studio-id="btn-new-project"
+        data-studio-type="button"
+        data-studio-name="New Project Button"
+        data-studio-source="index.html:30"
+        data-studio-tokens="color.accent color.on-accent radius.control"
+        data-studio-text="button.new-project">+ New Project</button>
+    </header>
+
+    <!-- Default State -->
+    <div data-studio-when="default">
+      <main class="container">
+        <div class="filter-bar">
+          <input 
+            type="text" 
+            placeholder="Search projects..."
+            class="search-input"
+            data-studio-id="search-input"
+            data-studio-type="input"
+            data-studio-name="Search Input"
+            data-studio-source="index.html:46"
+            data-studio-tokens="radius.control color.accent"
+            data-studio-text="input.search-placeholder">
+          <div class="filter-chips">
+            <button 
+              class="chip active"
+              data-studio-id="chip-all"
+              data-studio-type="chip"
+              data-studio-name="All Projects Chip"
+              data-studio-source="index.html:54"
+              data-studio-tokens="radius.chip color.accent"
+              data-studio-text="chip.all">All</button>
+            <button 
+              class="chip"
+              data-studio-id="chip-active"
+              data-studio-type="chip"
+              data-studio-name="Active Chip"
+              data-studio-source="index.html:61"
+              data-studio-tokens="radius.chip color.accent"
+              data-studio-text="chip.active">Active</button>
+            <button 
+              class="chip"
+              data-studio-id="chip-completed"
+              data-studio-type="chip"
+              data-studio-name="Completed Chip"
+              data-studio-source="index.html:68"
+              data-studio-tokens="radius.chip color.accent"
+              data-studio-text="chip.completed">Completed</button>
+            <button 
+              class="chip"
+              data-studio-id="chip-overdue"
+              data-studio-type="chip"
+              data-studio-name="Overdue Chip"
+              data-studio-source="index.html:75"
+              data-studio-tokens="radius.chip color.accent"
+              data-studio-text="chip.overdue">Overdue</button>
+          </div>
+        </div>
+
+        <div class="projects-grid">
+          <!-- Project Card 1 -->
+          <div 
+            class="project-card"
+            data-studio-id="card-project-1"
+            data-studio-type="card"
+            data-studio-name="Website Redesign Card"
+            data-studio-source="index.html:88"
+            data-studio-tokens="radius.card space.row"
+            onclick="showProjectDetail('project-1')">
+            <div class="card-header">
+              <h3 
+                data-studio-id="card-1-title"
+                data-studio-type="heading"
+                data-studio-name="Project 1 Title"
+                data-studio-source="index.html:96"
+                data-studio-tokens="text.title"
+                data-studio-text="project.1.title">Website Redesign</h3>
+              <span 
+                class="status-badge status-active"
+                data-studio-id="card-1-status"
+                data-studio-type="chip"
+                data-studio-name="Project 1 Status"
+                data-studio-source="index.html:103"
+                data-studio-tokens="radius.chip"
+                data-studio-text="project.1.status">Active</span>
+            </div>
+            <p 
+              class="card-description"
+              data-studio-id="card-1-description"
+              data-studio-type="text"
+              data-studio-name="Project 1 Description"
+              data-studio-source="index.html:111"
+              data-studio-text="project.1.description">Complete overhaul of company website with modern design and improved UX</p>
+            <div class="card-timeline">
+              <div class="timeline-bar">
+                <div class="timeline-progress" style="width: 65%"></div>
+              </div>
+              <div class="timeline-info">
+                <span 
+                  data-studio-id="card-1-dates"
+                  data-studio-type="text"
+                  data-studio-name="Project 1 Dates"
+                  data-studio-source="index.html:122"
+                  data-studio-text="project.1.dates">Jan 15 - Mar 30, 2024</span>
+                <span 
+                  data-studio-id="card-1-progress"
+                  data-studio-type="text"
+                  data-studio-name="Project 1 Progress"
+                  data-studio-source="index.html:128"
+                  data-studio-text="project.1.progress">65% Complete</span>
+              </div>
+            </div>
+            <div class="card-footer">
+              <div class="team-avatars">
+                <div class="avatar">JD</div>
+                <div class="avatar">SM</div>
+                <div class="avatar">AK</div>
+                <div class="avatar-more">+3</div>
+              </div>
+              <span 
+                class="task-count"
+                data-studio-id="card-1-tasks"
+                data-studio-type="text"
+                data-studio-name="Project 1 Task Count"
+                data-studio-source="index.html:144"
+                data-studio-text="project.1.tasks">12/18 tasks</span>
+            </div>
+          </div>
+
+          <!-- Project Card 2 -->
+          <div 
+            class="project-card"
+            data-studio-id="card-project-2"
+            data-studio-type="card"
+            data-studio-name="Mobile App Launch Card"
+            data-studio-source="index.html:154"
+            data-studio-tokens="radius.card space.row"
+            onclick="showProjectDetail('project-2')">
+            <div class="card-header">
+              <h3 
+                data-studio-id="card-2-title"
+                data-studio-type="heading"
+                data-studio-name="Project 2 Title"
+                data-studio-source="index.html:162"
+                data-studio-tokens="text.title"
+                data-studio-text="project.2.title">Mobile App Launch</h3>
+              <span 
+                class="status-badge status-active"
+                data-studio-id="card-2-status"
+                data-studio-type="chip"
+                data-studio-name="Project 2 Status"
+                data-studio-source="index.html:169"
+                data-studio-tokens="radius.chip"
+                data-studio-text="project.2.status">Active</span>
+            </div>
+            <p 
+              class="card-description"
+              data-studio-id="card-2-description"
+              data-studio-type="text"
+              data-studio-name="Project 2 Description"
+              data-studio-source="index.html:177"
+              data-studio-text="project.2.description">Launch iOS and Android apps with core features and marketing campaign</p>
+            <div class="card-timeline">
+              <div class="timeline-bar">
+                <div class="timeline-progress" style="width: 40%"></div>
+              </div>
+              <div class="timeline-info">
+                <span 
+                  data-studio-id="card-2-dates"
+                  data-studio-type="text"
+                  data-studio-name="Project 2 Dates"
+                  data-studio-source="index.html:188"
+                  data-studio-text="project.2.dates">Feb 1 - May 15, 2024</span>
+                <span 
+                  data-studio-id="card-2-progress"
+                  data-studio-type="text"
+                  data-studio-name="Project 2 Progress"
+                  data-studio-source="index.html:194"
+                  data-studio-text="project.2.progress">40% Complete</span>
+              </div>
+            </div>
+            <div class="card-footer">
+              <div class="team-avatars">
+                <div class="avatar">RC</div>
+                <div class="avatar">TL</div>
+                <div class="avatar-more">+5</div>
+              </div>
+              <span 
+                class="task-count"
+                data-studio-id="card-2-tasks"
+                data-studio-type="text"
+                data-studio-name="Project 2 Task Count"
+                data-studio-source="index.html:209"
+                data-studio-text="project.2.tasks">15/38 tasks</span>
+            </div>
+          </div>
+
+          <!-- Project Card 3 -->
+          <div 
+            class="project-card"
+            data-studio-id="card-project-3"
+            data-studio-type="card"
+            data-studio-name="Q1 Marketing Campaign Card"
+            data-studio-source="index.html:219"
+            data-studio-tokens="radius.card space.row"
+            onclick="showProjectDetail('project-3')">
+            <div class="card-header">
+              <h3 
+                data-studio-id="card-3-title"
+                data-studio-type="heading"
+                data-studio-name="Project 3 Title"
+                data-studio-source="index.html:227"
+                data-studio-tokens="text.title"
+                data-studio-text="project.3.title">Q1 Marketing Campaign</h3>
+              <span 
+                class="status-badge status-completed"
+                data-studio-id="card-3-status"
+                data-studio-type="chip"
+                data-studio-name="Project 3 Status"
+                data-studio-source="index.html:234"
+                data-studio-tokens="radius.chip"
+                data-studio-text="project.3.status">Completed</span>
+            </div>
+            <p 
+              class="card-description"
+              data-studio-id="card-3-description"
+              data-studio-type="text"
+              data-studio-name="Project 3 Description"
+              data-studio-source="index.html:242"
+              data-studio-text="project.3.description">Multi-channel marketing campaign for Q1 product launches</p>
+            <div class="card-timeline">
+              <div class="timeline-bar">
+                <div class="timeline-progress" style="width: 100%"></div>
+              </div>
+              <div class="timeline-info">
+                <span 
+                  data-studio-id="card-3-dates"
+                  data-studio-type="text"
+                  data-studio-name="Project 3 Dates"
+                  data-studio-source="index.html:253"
+                  data-studio-text="project.3.dates">Jan 1 - Mar 31, 2024</span>
+                <span 
+                  data-studio-id="card-3-progress"
+                  data-studio-type="text"
+                  data-studio-name="Project 3 Progress"
+                  data-studio-source="index.html:259"
+                  data-studio-text="project.3.progress">100% Complete</span>
+              </div>
+            </div>
+            <div class="card-footer">
+              <div class="team-avatars">
+                <div class="avatar">MJ</div>
+                <div class="avatar">PW</div>
+                <div class="avatar">LB</div>
+              </div>
+              <span 
+                class="task-count"
+                data-studio-id="card-3-tasks"
+                data-studio-type="text"
+                data-studio-name="Project 3 Task Count"
+                data-studio-source="index.html:273"
+                data-studio-text="project.3.tasks">24/24 tasks</span>
+            </div>
+          </div>
+
+          <!-- Project Card 4 -->
+          <div 
+            class="project-card card-overdue"
+            data-studio-id="card-project-4"
+            data-studio-type="card"
+            data-studio-name="Infrastructure Upgrade Card"
+            data-studio-source="index.html:283"
+            data-studio-tokens="radius.card space.row"
+            onclick="showProjectDetail('project-4')">
+            <div class="card-header">
+              <h3 
+                data-studio-id="card-4-title"
+                data-studio-type="heading"
+                data-studio-name="Project 4 Title"
+                data-studio-source="index.html:291"
+                data-studio-tokens="text.title"
+                data-studio-text="project.4.title">Infrastructure Upgrade</h3>
+              <span 
+                class="status-badge status-overdue"
+                data-studio-id="card-4-status"
+                data-studio-type="chip"
+                data-studio-name="Project 4 Status"
+                data-studio-source="index.html:298"
+                data-studio-tokens="radius.chip"
+                data-studio-text="project.4.status">Overdue</span>
+            </div>
+            <p 
+              class="card-description"
+              data-studio-id="card-4-description"
+              data-studio-type="text"
+              data-studio-name="Project 4 Description"
+              data-studio-source="index.html:306"
+              data-studio-text="project.4.description">Migrate to cloud infrastructure and upgrade security protocols</p>
+            <div class="card-timeline">
+              <div class="timeline-bar">
+                <div class="timeline-progress timeline-overdue" style="width: 75%"></div>
+              </div>
+              <div class="timeline-info">
+                <span 
+                  data-studio-id="card-4-dates"
+                  data-studio-type="text"
+                  data-studio-name="Project 4 Dates"
+                  data-studio-source="index.html:317"
+                  data-studio-text="project.4.dates">Dec 1, 2023 - Feb 28, 2024</span>
+                <span 
+                  data-studio-id="card-4-progress"
+                  data-studio-type="text"
+                  data-studio-name="Project 4 Progress"
+                  data-studio-source="index.html:323"
+                  data-studio-text="project.4.progress">75% Complete</span>
+              </div>
+            </div>
+            <div class="card-footer">
+              <div class="team-avatars">
+                <div class="avatar">DK</div>
+                <div class="avatar">NS</div>
+              </div>
+              <span 
+                class="task-count"
+                data-studio-id="card-4-tasks"
+                data-studio-type="text"
+                data-studio-name="Project 4 Task Count"
+                data-studio-source="index.html:337"
+                data-studio-text="project.4.tasks">9/12 tasks</span>
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
+
+    <!-- Empty State -->
+    <div data-studio-when="empty">
+      <main class="container state-container">
+        <div class="empty-state">
+          <div class="empty-icon">📋</div>
+          <h2 
+            data-studio-id="empty-heading"
+            data-studio-type="heading"
+            data-studio-name="Empty State Heading"
+            data-studio-source="index.html:355"
+            data-studio-tokens="text.title"
+            data-studio-text="empty.heading">No Projects Yet</h2>
+          <p 
+            data-studio-id="empty-message"
+            data-studio-type="text"
+            data-studio-name="Empty State Message"
+            data-studio-source="index.html:362"
+            data-studio-text="empty.message">Get started by creating your first project to track timelines and milestones.</p>
+          <button 
+            class="btn-primary"
+            data-studio-id="btn-create-first"
+            data-studio-type="button"
+            data-studio-name="Create First Project Button"
+            data-studio-source="index.html:368"
+            data-studio-tokens="color.accent color.on-accent radius.control"
+            data-studio-text="button.create-first">Create Your First Project</button>
+        </div>
+      </main>
+    </div>
+
+    <!-- Loading State -->
+    <div data-studio-when="loading">
+      <main class="container state-container">
+        <div class="loading-state">
+          <div class="spinner"></div>
+          <p 
+            data-studio-id="loading-message"
+            data-studio-type="text"
+            data-studio-name="Loading Message"
+            data-studio-source="index.html:384"
+            data-studio-text="loading.message">Loading projects...</p>
+        </div>
+      </main>
+    </div>
+
+    <!-- Error State -->
+    <div data-studio-when="error">
+      <main class="container state-container">
+        <div class="error-state">
+          <div class="error-icon">⚠️</div>
+          <h2 
+            data-studio-id="error-heading"
+            data-studio-type="heading"
+            data-studio-name="Error State Heading"
+            data-studio-source="index.html:399"
+            data-studio-tokens="text.title"
+            data-studio-text="error.heading">Unable to Load Projects</h2>
+          <p 
+            data-studio-id="error-message"
+            data-studio-type="text"
+            data-studio-name="Error State Message"
+            data-studio-source="index.html:406"
+            data-studio-text="error.message">There was a problem loading your projects. Please try again.</p>
+          <button 
+            class="btn-primary"
+            data-studio-id="btn-retry"
+            data-studio-type="button"
+            data-studio-name="Retry Button"
+            data-studio-source="index.html:412"
+            data-studio-tokens="color.accent color.on-accent radius.control"
+            data-studio-text="button.retry">Try Again</button>
+        </div>
+      </main>
+    </div>
+  </div>
+
+  <!-- Project Detail Screen -->
+  <div data-studio-screen="project-detail" data-studio-screen-name="Project Detail" data-studio-draft style="display: none;">
+    
+    <!-- Header -->
+    <header 
+      data-studio-id="header-detail"
+      data-studio-type="header"
+      data-studio-name="Detail Header"
+      data-studio-source="index.html:428"
+      data-studio-tokens="color.accent color.on-accent">
+      <button 
+        class="btn-back"
+        data-studio-id="btn-back"
+        data-studio-type="button-ghost"
+        data-studio-name="Back Button"
+        data-studio-source="index.html:435"
+        data-studio-tokens="color.on-accent"
+        data-studio-text="button.back"
+        onclick="showProjectsList()">← Back</button>
+      <h1 
+        data-studio-id="header-detail-title"
+        data-studio-type="heading"
+        data-studio-name="Detail Header Title"
+        data-studio-source="index.html:443"
+        data-studio-tokens="text.title"
+        data-studio-text="header.detail-title">Project Details</h1>
+      <button 
+        class="btn-edit"
+        data-studio-id="btn-edit"
+        data-studio-type="button"
+        data-studio-name="Edit Button"
+        data-studio-source="index.html:450"
+        data-studio-tokens="color.accent color.on-accent radius.control"
+        data-studio-text="button.edit">Edit</button>
+    </header>
+
+    <!-- Default State -->
+    <div data-studio-when="default">
+      <main class="container detail-container">
+        <div class="detail-header">
+          <div class="detail-title-row">
+            <h2 
+              data-studio-id="detail-project-title"
+              data-studio-type="heading"
+              data-studio-name="Detail Project Title"
+              data-studio-source="index.html:464"
+              data-studio-tokens="text.title"
+              data-studio-text="detail.project.title">Website Redesign</h2>
+            <span 
+              class="status-badge status-active"
+              data-studio-id="detail-status"
+              data-studio-type="chip"
+              data-studio-name="Detail Status Badge"
+              data-studio-source="index.html:471"
+              data-studio-tokens="radius.chip"
+              data-studio-text="detail.status">Active</span>
+          </div>
+          <p 
+            class="detail-description"
+            data-studio-id="detail-description"
+            data-studio-type="text"
+            data-studio-name="Detail Description"
+            data-studio-source="index.html:479"
+            data-studio-text="detail.description">Complete overhaul of company website with modern design and improved UX. This project includes user research, wireframing, visual design, development, and testing phases.</p>
+        </div>
+
+        <div class="detail-grid">
+          <!-- Timeline Section -->
+          <div 
+            class="detail-card"
+            data-studio-id="card-timeline"
+            data-studio-type="card"
+            data-studio-name="Timeline Card"
+            data-studio-source="index.html:489"
+            data-studio-tokens="radius.card space.row">
+            <h3 
+              data-studio-id="timeline-heading"
+              data-studio-type="heading"
+              data-studio-name="Timeline Heading"
+              data-studio-source="index.html:495"
+              data-studio-tokens="text.title"
+              data-studio-text="timeline.heading">Timeline</h3>
+            <div class="timeline-details">
+              <div class="timeline-row">
+                <span 
+                  class="timeline-label"
+                  data-studio-id="timeline-start-label"
+                  data-studio-type="text"
+                  data-studio-name="Start Date Label"
+                  data-studio-source="index.html:503"
+                  data-studio-text="timeline.start-label">Start Date:</span>
+                <span 
+                  data-studio-id="timeline-start-date"
+                  data-studio-type="text"
+                  data-studio-name="Start Date"
+                  data-studio-source="index.html:509"
+                  data-studio-text="timeline.start-date">January 15, 2024</span>
+              </div>
+              <div class="timeline-row">
+                <span 
+                  class="timeline-label"
+                  data-studio-id="timeline-end-label"
+                  data-studio-type="text"
+                  data-studio-name="End Date Label"
+                  data-studio-source="index.html:516"
+                  data-studio-text="timeline.end-label">End Date:</span>
+                <span 
+                  data-studio-id="timeline-end-date"
+                  data-studio-type="text"
+                  data-studio-name="End Date"
+                  data-studio-source="index.html:522"
+                  data-studio-text="timeline.end-date">March 30, 2024</span>
+              </div>
+              <div class="timeline-row">
+                <span 
+                  class="timeline-label"
+                  data-studio-id="timeline-duration-label"
+                  data-studio-type="text"
+                  data-studio-name="Duration Label"
+                  data-studio-source="index.html:529"
+                  data-studio-text="timeline.duration-label">Duration:</span>
+                <span 
+                  data-studio-id="timeline-duration"
+                  data-studio-type="text"
+                  data-studio-name="Duration"
+                  data-studio-source="index.html:535"
+                  data-studio-text="timeline.duration">75 days</span>
+              </div>
+              <div class="timeline-row">
+                <span 
+                  class="timeline-label"
+                  data-studio-id="timeline-remaining-label"
+                  data-studio-type="text"
+                  data-studio-name="Remaining Label"
+                  data-studio-source="index.html:542"
+                  data-studio-text="timeline.remaining-label">Days Remaining:</span>
+                <span 
+                  data-studio-id="timeline-remaining"
+                  data-studio-type="text"
+                  data-studio-name="Days Remaining"
+                  data-studio-source="index.html:548"
+                  data-studio-text="timeline.remaining">26 days</span>
+              </div>
+            </div>
+            <div class="progress-section">
+              <div class="progress-header">
+                <span 
+                  data-studio-id="progress-label"
+                  data-studio-type="text"
+                  data-studio-name="Progress Label"
+                  data-studio-source="index.html:557"
+                  data-studio-text="progress.label">Overall Progress</span>
+                <span 
+                  data-studio-id="progress-percent"
+                  data-studio-type="text"
+                  data-studio-name="Progress Percentage"
+                  data-studio-source="index.html:563"
+                  data-studio-text="progress.percent">65%</span>
+              </div>
+              <div class="timeline-bar">
+                <div class="timeline-progress" style="width: 65%"></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Team Section -->
+          <div 
+            class="detail-card"
+            data-studio-id="card-team"
+            data-studio-type="card"
+            data-studio-name="Team Card"
+            data-studio-source="index.html:578"
+            data-studio-tokens="radius.card space.row">
+            <h3 
+              data-studio-id="team-heading"
+              data-studio-type="heading"
+              data-studio-name="Team Heading"
+              data-studio-source="index.html:584"
+              data-studio-tokens="text.title"
+              data-studio-text="team.heading">Team Members</h3>
+            <div class="team-list">
+              <div 
+                class="team-member"
+                data-studio-id="member-1"
+                data-studio-type="row"
+                data-studio-name="Team Member 1"
+                data-studio-source="index.html:592"
+                data-studio-tokens="space.row">
+                <div class="avatar-large">JD</div>
+                <div class="member-info">
+                  <div 
+                    data-studio-id="member-1-name"
+                    data-studio-type="text"
+                    data-studio-name="Member 1 Name"
+                    data-studio-source="index.html:600"
+                    data-studio-text="member.1.name">Jane Doe</div>
+                  <div 
+                    class="member-role"
+                    data-studio-id="member-1-role"
+                    data-studio-type="text"
+                    data-studio-name="Member 1 Role"
+                    data-studio-source="index.html:606"
+                    data-studio-text="member.1.role">Project Manager</div>
+                </div>
+              </div>
+              <div 
+                class="team-member"
+                data-studio-id="member-2"
+                data-studio-type="row"
+                data-studio-name="Team Member 2"
+                data-studio-source="index.html:614"
+                data-studio-tokens="space.row">
+                <div class="avatar-large">SM</div>
+                <div class="member-info">
+                  <div 
+                    data-studio-id="member-2-name"
+                    data-studio-type="text"
+                    data-studio-name="Member 2 Name"
+                    data-studio-source="index.html:622"
+                    data-studio-text="member.2.name">Sarah Miller</div>
+                  <div 
+                    class="member-role"
+                    data-studio-id="member-2-role"
+                    data-studio-type="text"
+                    data-studio-name="Member 2 Role"
+                    data-studio-source="index.html:628"
+                    data-studio-text="member.2.role">Lead Designer</div>
+                </div>
+              </div>
+              <div 
+                class="team-member"
+                data-studio-id="member-3"
+                data-studio-type="row"
+                data-studio-name="Team Member 3"
+                data-studio-source="index.html:636"
+                data-studio-tokens="space.row">
+                <div class="avatar-large">AK</div>
+                <div class="member-info">
+                  <div 
+                    data-studio-id="member-3-name"
+                    data-studio-type="text"
+                    data-studio-name="Member 3 Name"
+                    data-studio-source="index.html:644"
+                    data-studio-text="member.3.name">Alex Kim</div>
+                  <div 
+                    class="member-role"
+                    data-studio-id="member-3-role"
+                    data-studio-type="text"
+                    data-studio-name="Member 3 Role"
+                    data-studio-source="index.html:650"
+                    data-studio-text="member.3.role">Frontend Developer</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Milestones Section -->
+        <div 
+          class="detail-card milestones-card"
+          data-studio-id="card-milestones"
+          data-studio-type="card"
+          data-studio-name="Milestones Card"
+          data-studio-source="index.html:663"
+          data-studio-tokens="radius.card space.row">
+          <h3 
+            data-studio-id="milestones-heading"
+            data-studio-type="heading"
+            data-studio-name="Milestones Heading"
+            data-studio-source="index.html:669"
+            data-studio-tokens="text.title"
+            data-studio-text="milestones.heading">Milestones</h3>
+          <div class="milestones-timeline">
+            <div 
+              class="milestone completed"
+              data-studio-id="milestone-1"
+              data-studio-type="row"
+              data-studio-name="Milestone 1"
+              data-studio-source="index.html:677"
+              data-studio-tokens="space.row">
+              <div class="milestone-marker"></div>
+              <div class="milestone-content">
+                <div class="milestone-header">
+                  <h4 
+                    data-studio-id="milestone-1-title"
+                    data-studio-type="heading"
+                    data-studio-name="Milestone 1 Title"
+                    data-studio-source="index.html:686"
+                    data-studio-text="milestone.1.title">Research & Discovery</h4>
+                  <span 
+                    class="milestone-date"
+                    data-studio-id="milestone-1-date"
+                    data-studio-type="text"
+                    data-studio-name="Milestone 1 Date"
+                    data-studio-source="index.html:692"
+                    data-studio-text="milestone.1.date">Jan 15 - Jan 25</span>
+                </div>
+                <p 
+                  data-studio-id="milestone-1-description"
+                  data-studio-type="text"
+                  data-studio-name="Milestone 1 Description"
+                  data-studio-source="index.html:699"
+                  data-studio-text="milestone.1.description">User research, competitor analysis, and requirements gathering</p>
+              </div>
+            </div>
+            <div 
+              class="milestone completed"
+              data-studio-id="milestone-2"
+              data-studio-type="row"
+              data-studio-name="Milestone 2"
+              data-studio-source="index.html:706"
+              data-studio-tokens="space.row">
+              <div class="milestone-marker"></div>
+              <div class="milestone-content">
+                <div class="milestone-header">
+                  <h4 
+                    data-studio-id="milestone-2-title"
+                    data-studio-type="heading"
+                    data-studio-name="Milestone 2 Title"
+                    data-studio-source="index.html:715"
+                    data-studio-text="milestone.2.title">Wireframes & Prototypes</h4>
+                  <span 
+                    class="milestone-date"
+                    data-studio-id="milestone-2-date"
+                    data-studio-type="text"
+                    data-studio-name="Milestone 2 Date"
+                    data-studio-source="index.html:721"
+                    data-studio-text="milestone.2.date">Jan 26 - Feb 10</span>
+                </div>
+                <p 
+                  data-studio-id="milestone-2-description"
+                  data-studio-type="text"
+                  data-studio-name="Milestone 2 Description"
+                  data-studio-source="index.html:728"
+                  data-studio-text="milestone.2.description">Create wireframes and interactive prototypes for key pages</p>
+              </div>
+            </div>
+            <div 
+              class="milestone active"
+              data-studio-id="milestone-3"
+              data-studio-type="row"
+              data-studio-name="Milestone 3"
+              data-studio-source="index.html:735"
+              data-studio-tokens="space.row">
+              <div class="milestone-marker"></div>
+              <div class="milestone-content">
+                <div class="milestone-header">
+                  <h4 
+                    data-studio-id="milestone-3-title"
+                    data-studio-type="heading"
+                    data-studio-name="Milestone 3 Title"
+                    data-studio-source="index.html:744"
+                    data-studio-text="milestone.3.title">Visual Design</h4>
+                  <span 
+                    class="milestone-date"
+                    data-studio-id="milestone-3-date"
+                    data-studio-type="text"
+                    data-studio-name="Milestone 3 Date"
+                    data-studio-source="index.html:750"
+                    data-studio-text="milestone.3.date">Feb 11 - Mar 5</span>
+                </div>
+                <p 
+                  data-studio-id="milestone-3-description"
+                  data-studio-type="text"
+                  data-studio-name="Milestone 3 Description"
+                  data-studio-source="index.html:757"
+                  data-studio-text="milestone.3.description">Complete visual design system and high-fidelity mockups</p>
+              </div>
+            </div>
+            <div 
+              class="milestone"
+              data-studio-id="milestone-4"
+              data-studio-type="row"
+              data-studio-name="Milestone 4"
+              data-studio-source="index.html:764"
+              data-studio-tokens="space.row">
+              <div class="milestone-marker"></div>
+              <div class="milestone-content">
+                <div class="milestone-header">
+                  <h4 
+                    data-studio-id="milestone-4-title"
+                    data-studio-type="heading"
+                    data-studio-name="Milestone 4 Title"
+                    data-studio-source="index.html:773"
+                    data-studio-text="milestone.4.title">Development & Testing</h4>
+                  <span 
+                    class="milestone-date"
+                    data-studio-id="milestone-4-date"
+                    data-studio-type="text"
+                    data-studio-name="Milestone 4 Date"
+                    data-studio-source="index.html:779"
+                    data-studio-text="milestone.4.date">Mar 6 - Mar 25</span>
+                </div>
+                <p 
+                  data-studio-id="milestone-4-description"
+                  data-studio-type="text"
+                  data-studio-name="Milestone 4 Description"
+                  data-studio-source="index.html:786"
+                  data-studio-text="milestone.4.description">Frontend development, QA testing, and bug fixes</p>
+              </div>
+            </div>
+            <div 
+              class="milestone"
+              data-studio-id="milestone-5"
+              data-studio-type="row"
+              data-studio-name="Milestone 5"
+              data-studio-source="index.html:793"
+              data-studio-tokens="space.row">
+              <div class="milestone-marker"></div>
+              <div class="milestone-content">
+                <div class="milestone-header">
+                  <h4 
+                    data-studio-id="milestone-5-title"
+                    data-studio-type="heading"
+                    data-studio-name="Milestone 5 Title"
+                    data-studio-source="index.html:802"
+                    data-studio-text="milestone.5.title">Launch</h4>
+                  <span 
+                    class="milestone-date"
+                    data-studio-id="milestone-5-date"
+                    data-studio-type="text"
+                    data-studio-name="Milestone 5 Date"
+                    data-studio-source="index.html:808"
+                    data-studio-text="milestone.5.date">Mar 26 - Mar 30</span>
+                </div>
+                <p 
+                  data-studio-id="milestone-5-description"
+                  data-studio-type="text"
+                  data-studio-name="Milestone 5 Description"
+                  data-studio-source="index.html:815"
+                  data-studio-text="milestone.5.description">Final review, deployment, and launch communications</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Tasks Section -->
+        <div 
+          class="detail-card"
+          data-studio-id="card-tasks"
+          data-studio-type="card"
+          data-studio-name="Tasks Card"
+          data-studio-source="index.html:826"
+          data-studio-tokens="radius.card space.row">
+          <h3 
+            data-studio-id="tasks-heading"
+            data-studio-type="heading"
+            data-studio-name="Tasks Heading"
+            data-studio-source="index.html:832"
+            data-studio-tokens="text.title"
+            data-studio-text="tasks.heading">Recent Tasks</h3>
+          <div class="tasks-list">
+            <div 
+              class="task-item completed"
+              data-studio-id="task-1"
+              data-studio-type="row"
+              data-studio-name="Task 1"
+              data-studio-source="index.html:840"
+              data-studio-tokens="space.row">
+              <input type="checkbox" checked disabled>
+              <div class="task-content">
+                <div 
+                  data-studio-id="task-1-title"
+                  data-studio-type="text"
+                  data-studio-name="Task 1 Title"
+                  data-studio-source="index.html:848"
+                  data-studio-text="task.1.title">Complete user interview analysis</div>
+                <div 
+                  class="task-meta"
+                  data-studio-id="task-1-meta"
+                  data-studio-type="text"
+                  data-studio-name="Task 1 Meta"
+                  data-studio-source="index.html:854"
+                  data-studio-text="task.1.meta">Due: Jan 24 • Assigned to: JD</div>
+              </div>
+            </div>
+            <div 
+              class="task-item completed"
+              data-studio-id="task-2"
+              data-studio-type="row"
+              data-studio-name="Task 2"
+              data-studio-source="index.html:861"
+              data-studio-tokens="space.row">
+              <input type="checkbox" checked disabled>
+              <div class="task-content">
+                <div 
+                  data-studio-id="task-2-title"
+                  data-studio-type="text"
+                  data-studio-name="Task 2 Title"
+                  data-studio-source="index.html:869"
+                  data-studio-text="task.2.title">Design homepage wireframe</div>
+                <div 
+                  class="task-meta"
+                  data-studio-id="task-2-meta"
+                  data-studio-type="text"
+                  data-studio-name="Task 2 Meta"
+                  data-studio-source="index.html:875"
+                  data-studio-text="task.2.meta">Due: Feb 5 • Assigned to: SM</div>
+              </div>
+            </div>
+            <div 
+              class="task-item active"
+              data-studio-id="task-3"
+              data-studio-type="row"
+              data-studio-name="Task 3"
+              data-studio-source="index.html:882"
+              data-studio-tokens="space.row">
+              <input type="checkbox" disabled>
+              <div class="task-content">
+                <div 
+                  data-studio-id="task-3-title"
+                  data-studio-type="text"
+                  data-studio-name="Task 3 Title"
+                  data-studio-source="index.html:890"
+                  data-studio-text="task.3.title">Create design system components</div>
+                <div 
+                  class="task-meta"
+                  data-studio-id="task-3-meta"
+                  data-studio-type="text"
+                  data-studio-name="Task 3 Meta"
+                  data-studio-source="index.html:896"
+                  data-studio-text="task.3.meta">Due: Mar 1 • Assigned to: SM</div>
+              </div>
+            </div>
+            <div 
+              class="task-item active"
+              data-studio-id="task-4"
+              data-studio-type="row"
+              data-studio-name="Task 4"
+              data-studio-source="index.html:903"
+              data-studio-tokens="space.row">
+              <input type="checkbox" disabled>
+              <div class="task-content">
+                <div 
+                  data-studio-id="task-4-title"
+                  data-studio-type="text"
+                  data-studio-name="Task 4 Title"
+                  data-studio-source="index.html:911"
+                  data-studio-text="task.4.title">Implement responsive navigation</div>
+                <div 
+                  class="task-meta"
+                  data-studio-id="task-4-meta"
+                  data-studio-type="text"
+                  data-studio-name="Task 4 Meta"
+                  data-studio-source="index.html:917"
+                  data-studio-text="task.4.meta">Due: Mar 10 • Assigned to: AK</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
+
+    <!-- Empty State -->
+    <div data-studio-when="empty">
+      <main class="container state-container">
+        <div class="empty-state">
+          <div class="empty-icon">📄</div>
+          <h2 
+            data-studio-id="detail-empty-heading"
+            data-studio-type="heading"
+            data-studio-name="Detail Empty Heading"
+            data-studio-source="index.html:937"
+            data-studio-tokens="text.title"
+            data-studio-text="detail.empty.heading">Project Not Found</h2>
+          <p 
+            data-studio-id="detail-empty-message"
+            data-studio-type="text"
+            data-studio-name="Detail Empty Message"
+            data-studio-source="index.html:944"
+            data-studio-text="detail.empty.message">The project you're looking for doesn't exist or has been deleted.</p>
+          <button 
+            class="btn-primary"
+            data-studio-id="btn-back-to-list"
+            data-studio-type="button"
+            data-studio-name="Back to List Button"
+            data-studio-source="index.html:950"
+            data-studio-tokens="color.accent color.on-accent radius.control"
+            data-studio-text="button.back-to-list"
+            onclick="showProjectsList()">Back to Projects</button>
+        </div>
+      </main>
+    </div>
+
+    <!-- Loading State -->
+    <div data-studio-when="loading">
+      <main class="container state-container">
+        <div class="loading-state">
+          <div class="spinner"></div>
+          <p 
+            data-studio-id="detail-loading-message"
+            data-studio-type="text"
+            data-studio-name="Detail Loading Message"
+            data-studio-source="index.html:967"
+            data-studio-text="detail.loading.message">Loading project details...</p>
+        </div>
+      </main>
+    </div>
+
+    <!-- Error State -->
+    <div data-studio-when="error">
+      <main class="container state-container">
+        <div class="error-state">
+          <div class="error-icon">⚠️</div>
+          <h2 
+            data-studio-id="detail-error-heading"
+            data-studio-type="heading"
+            data-studio-name="Detail Error Heading"
+            data-studio-source="index.html:982"
+            data-studio-tokens="text.title"
+            data-studio-text="detail.error.heading">Unable to Load Project</h2>
+          <p 
+            data-studio-id="detail-error-message"
+            data-studio-type="text"
+            data-studio-name="Detail Error Message"
+            data-studio-source="index.html:989"
+            data-studio-text="detail.error.message">There was a problem loading this project. Please try again.</p>
+          <button 
+            class="btn-primary"
+            data-studio-id="btn-detail-retry"
+            data-studio-type="button"
+            data-studio-name="Detail Retry Button"
+            data-studio-source="index.html:995"
+            data-studio-tokens="color.accent color.on-accent radius.control"
+            data-studio-text="button.detail-retry">Try Again</button>
+        </div>
+      </main>
+    </div>
+  </div>
+
+  <script src="src/scripts/app.js"></script>
+</body>
+</html>
