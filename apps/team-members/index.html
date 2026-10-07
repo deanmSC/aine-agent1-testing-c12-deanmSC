@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Team Members - Expense Claims</title>
+  <link rel="stylesheet" href="src/theme/tokens.css">
+  <link rel="stylesheet" href="src/styles/main.css">
+</head>
+<body>
+  <!-- Main Screen -->
+  <div id="main-screen">
+    
+    <!-- Header -->
+    <header>
+      <h1>Team Members - Expense Claims</h1>
+      <button class="btn-primary" id="btn-add-claim">+ Add Claim</button>
+    </header>
+
+    <div class="container">
+      
+      <!-- Summary Section -->
+      <section class="summary-section">
+        <h2>Summary</h2>
+        <div class="summary-grid">
+          <div class="summary-card">
+            <h3>Total Claims</h3>
+            <div class="amount" id="total-claims">0</div>
+            <div class="count" id="claims-count">0 claims</div>
+          </div>
+          <div class="summary-card">
+            <h3>Pending</h3>
+            <div class="amount" id="pending-total">$0.00</div>
+            <div class="count" id="pending-count">0 claims</div>
+          </div>
+          <div class="summary-card">
+            <h3>Approved</h3>
+            <div class="amount" id="approved-total">$0.00</div>
+            <div class="count" id="approved-count">0 claims</div>
+          </div>
+          <div class="summary-card">
+            <h3>Rejected</h3>
+            <div class="amount" id="rejected-total">$0.00</div>
+            <div class="count" id="rejected-count">0 claims</div>
+          </div>
+        </div>
+
+        <!-- Team Breakdown -->
+        <div class="team-breakdown">
+          <h3>Total by Team Member</h3>
+          <div id="team-breakdown-list">
+            <!-- Populated by JavaScript -->
+          </div>
+        </div>
+      </section>
+
+      <!-- Controls Section -->
+      <section class="controls-section">
+        <div class="controls-row">
+          <div class="search-box">
+            <input 
+              type="text" 
+              id="search-input" 
+              placeholder="Search by name, description, or amount..."
+            >
+          </div>
+          <div class="filter-group">
+            <label for="status-filter">Status:</label>
+            <select id="status-filter">
+              <option value="all">All</option>
+              <option value="Pending">Pending</option>
+              <option value="Approved">Approved</option>
+              <option value="Rejected">Rejected</option>
+            </select>
+          </div>
+          <div class="filter-group">
+            <label for="member-filter">Member:</label>
+            <select id="member-filter">
+              <option value="all">All</option>
+              <!-- Populated by JavaScript -->
+            </select>
+          </div>
+          <button class="btn-secondary" id="btn-clear-filters">Clear Filters</button>
+        </div>
+      </section>
+
+      <!-- Table Section -->
+      <section class="table-section">
+        <div class="table-header">
+          <h2>Expense Claims</h2>
+        </div>
+        
+        <div id="table-container">
+          <!-- Table will be rendered here by JavaScript -->
+        </div>
+
+        <!-- Empty State -->
+        <div id="empty-state" class="empty-state" style="display: none;">
+          <div class="icon">📋</div>
+          <h3>No Claims Found</h3>
+          <p>No expense claims match your current filters. Try adjusting your search or filters.</p>
+        </div>
+      </section>
+
+    </div>
+  </div>
+
+  <!-- Add/Edit Claim Modal -->
+  <div id="claim-modal" class="modal-overlay">
+    <div class="modal">
+      <div class="modal-header">
+        <h2 id="modal-title">Add Expense Claim</h2>
+      </div>
+      <div class="modal-body">
+        <form id="claim-form">
+          <input type="hidden" id="claim-id">
+          
+          <div class="form-row">
+            <div class="form-group">
+              <label for="claim-name">Team Member Name *</label>
+              <input type="text" id="claim-name" required>
+            </div>
+            <div class="form-group">
+              <label for="claim-date">Date *</label>
+              <input type="date" id="claim-date" required>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="claim-description">Description *</label>
+            <textarea id="claim-description" required></textarea>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="claim-amount">Amount ($) *</label>
+              <input type="number" id="claim-amount" step="0.01" min="0" required>
+            </div>
+            <div class="form-group">
+              <label for="claim-status">Status *</label>
+              <select id="claim-status" required>
+                <option value="Pending">Pending</option>
+                <option value="Approved">Approved</option>
+                <option value="Rejected">Rejected</option>
+              </select>
+            </div>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn-secondary" id="btn-cancel">Cancel</button>
+        <button type="submit" class="btn-primary" id="btn-save" form="claim-form">Save Claim</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Delete Confirmation Modal -->
+  <div id="delete-modal" class="modal-overlay">
+    <div class="modal">
+      <div class="modal-header">
+        <h2>Confirm Delete</h2>
+      </div>
+      <div class="modal-body">
+        <p>Are you sure you want to delete this expense claim? This action cannot be undone.</p>
+        <p style="margin-top: 12px;"><strong id="delete-claim-info"></strong></p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn-secondary" id="btn-cancel-delete">Cancel</button>
+        <button type="button" class="btn-danger" id="btn-confirm-delete">Delete</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="src/scripts/app.js"></script>
+</body>
+</html>
