@@ -1,8 +1,8 @@
 /* Design Tokens for Agent Zero Studio */
 :root {
   /* Color tokens */
-  --color-accent: #2563eb;
-  --color-on-accent: #ffffff;
+  --color-accent: #2563EB;
+  --color-on-accent: #FFFFFF;
   
   /* Radius tokens */
   --radius-control: 6px;

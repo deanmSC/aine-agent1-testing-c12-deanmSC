@@ -11,6 +11,8 @@ body {
   background-color: var(--color-surface);
   color: var(--color-text-primary);
   line-height: 1.6;
+  overflow-x: hidden;
+  min-width: 320px;
 }
 
 /* Header Styles */
@@ -674,5 +676,62 @@ html:not([data-studio-state]) [data-studio-when~="default"] {
     flex-direction: column;
     align-items: flex-start;
     gap: var(--space-xs);
+  }
+}
+
+@media (max-width: 480px) {
+  .container {
+    padding: var(--space-sm);
+  }
+
+  header {
+    padding: var(--space-xs) var(--space-sm);
+    flex-wrap: wrap;
+    gap: var(--space-sm);
+  }
+
+  header h1 {
+    font-size: var(--text-base);
+  }
+
+  .btn-new-project,
+  .btn-edit {
+    padding: var(--space-xs) var(--space-sm);
+    font-size: var(--text-sm);
+  }
+
+  .filter-bar {
+    flex-direction: column;
+    gap: var(--space-sm);
+  }
+
+  .search-input {
+    width: 100%;
+  }
+
+  .filter-chips {
+    width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .card-header h3 {
+    font-size: var(--text-base);
+  }
+
+  .detail-title-row {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--space-sm);
+  }
+
+  .timeline-row {
+    flex-direction: column;
+    gap: var(--space-xs);
+  }
+
+  .team-member {
+    flex-direction: column;
+    align-items: flex-start;
   }
 }
