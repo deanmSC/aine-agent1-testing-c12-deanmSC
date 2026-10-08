@@ -1,0 +1,173 @@
+{
+  "version": 1,
+  "folder": "apps/project-planner",
+  "name": "Project Planner",
+  "committed": {
+    "tokens": {
+      "accent": "#2563EB",
+      "radius": 6,
+      "cardRadius": 12,
+      "rowPad": 12,
+      "h1": 28,
+      "chip": 16,
+      "head": "accent"
+    },
+    "texts": {
+      "header.title": "Project Planner",
+      "button.new-project": "+ New Project",
+      "input.search-placeholder": "Search projects...",
+      "chip.all": "All",
+      "chip.active": "Active",
+      "chip.completed": "Completed",
+      "chip.overdue": "Overdue",
+      "project.1.title": "Website Redesign",
+      "project.1.status": "Active",
+      "project.1.description": "Complete overhaul of company website with modern design and improved UX",
+      "project.1.dates": "Jan 15 - Mar 30, 2024",
+      "project.1.progress": "65% Complete",
+      "project.1.tasks": "12/18 tasks",
+      "project.2.title": "Mobile App Launch",
+      "project.2.status": "Active",
+      "project.2.description": "Launch iOS and Android apps with core features and marketing campaign",
+      "project.2.dates": "Feb 1 - May 15, 2024",
+      "project.2.progress": "40% Complete",
+      "project.2.tasks": "15/38 tasks",
+      "project.3.title": "Q1 Marketing Campaign",
+      "project.3.status": "Completed",
+      "project.3.description": "Multi-channel marketing campaign for Q1 product launches",
+      "project.3.dates": "Jan 1 - Mar 31, 2024",
+      "project.3.progress": "100% Complete",
+      "project.3.tasks": "24/24 tasks",
+      "project.4.title": "Infrastructure Upgrade",
+      "project.4.status": "Overdue",
+      "project.4.description": "Migrate to cloud infrastructure and upgrade security protocols",
+      "project.4.dates": "Dec 1, 2023 - Feb 28, 2024",
+      "project.4.progress": "75% Complete",
+      "project.4.tasks": "9/12 tasks",
+      "empty.heading": "No Projects Yet",
+      "empty.message": "Get started by creating your first project to track timelines and milestones.",
+      "button.create-first": "Create Your First Project",
+      "loading.message": "Loading projects...",
+      "error.heading": "Unable to Load Projects",
+      "error.message": "There was a problem loading your projects. Please try again.",
+      "button.retry": "Try Again",
+      "button.back": "← Back",
+      "header.detail-title": "Project Details",
+      "button.edit": "Edit",
+      "detail.project.title": "Website Redesign",
+      "detail.status": "Active",
+      "detail.description": "Complete overhaul of company website with modern design and improved UX. This project includes user research, wireframing, visual design, development, and testing phases.",
+      "timeline.heading": "Timeline",
+      "timeline.start-label": "Start Date:",
+      "timeline.start-date": "January 15, 2024",
+      "timeline.end-label": "End Date:",
+      "timeline.end-date": "March 30, 2024",
+      "timeline.duration-label": "Duration:",
+      "timeline.duration": "75 days",
+      "timeline.remaining-label": "Days Remaining:",
+      "timeline.remaining": "26 days",
+      "progress.label": "Overall Progress",
+      "progress.percent": "65%",
+      "team.heading": "Team Members",
+      "member.1.name": "Jane Doe",
+      "member.1.role": "Project Manager",
+      "member.2.name": "Sarah Miller",
+      "member.2.role": "Lead Designer",
+      "member.3.name": "Alex Kim",
+      "member.3.role": "Frontend Developer",
+      "milestones.heading": "Milestones",
+      "milestone.1.title": "Research & Discovery",
+      "milestone.1.date": "Jan 15 - Jan 25",
+      "milestone.1.description": "User research, competitor analysis, and requirements gathering",
+      "milestone.2.title": "Wireframes & Prototypes",
+      "milestone.2.date": "Jan 26 - Feb 10",
+      "milestone.2.description": "Create wireframes and interactive prototypes for key pages",
+      "milestone.3.title": "Visual Design",
+      "milestone.3.date": "Feb 11 - Mar 5",
+      "milestone.3.description": "Complete visual design system and high-fidelity mockups",
+      "milestone.4.title": "Development & Testing",
+      "milestone.4.date": "Mar 6 - Mar 25",
+      "milestone.4.description": "Frontend development, QA testing, and bug fixes",
+      "milestone.5.title": "Launch",
+      "milestone.5.date": "Mar 26 - Mar 30",
+      "milestone.5.description": "Final review, deployment, and launch communications",
+      "tasks.heading": "Recent Tasks",
+      "task.1.title": "Complete user interview analysis",
+      "task.1.meta": "Due: Jan 24 • Assigned to: JD",
+      "task.2.title": "Design homepage wireframe",
+      "task.2.meta": "Due: Feb 5 • Assigned to: SM",
+      "task.3.title": "Create design system components",
+      "task.3.meta": "Due: Mar 1 • Assigned to: SM",
+      "task.4.title": "Implement responsive navigation",
+      "task.4.meta": "Due: Mar 10 • Assigned to: AK",
+      "detail.empty.heading": "Project Not Found",
+      "detail.empty.message": "The project you're looking for doesn't exist or has been deleted.",
+      "button.back-to-list": "Back to Projects",
+      "detail.loading.message": "Loading project details...",
+      "detail.error.heading": "Unable to Load Project",
+      "detail.error.message": "There was a problem loading this project. Please try again.",
+      "button.detail-retry": "Try Again"
+    }
+  },
+  "tokenVarsFound": [
+    "accent",
+    "radius",
+    "cardRadius",
+    "rowPad",
+    "h1",
+    "chip",
+    "head"
+  ],
+  "screens": [
+    {
+      "id": "projects-list",
+      "name": "Projects List",
+      "draft": false
+    },
+    {
+      "id": "project-detail",
+      "name": "Project Detail",
+      "draft": false
+    }
+  ],
+  "drafts": [],
+  "notes": [],
+  "lastNote": 0,
+  "history": [
+    {
+      "text": "Page title size: 28px",
+      "at": "2026-10-08T13:45:59.749Z"
+    },
+    {
+      "text": "New screen: Project Detail",
+      "at": "2026-10-08T13:45:59.749Z"
+    },
+    {
+      "text": "New screen: Projects List",
+      "at": "2026-10-08T13:45:59.749Z"
+    }
+  ],
+  "handoff": {
+    "version": "Project Planner refresh",
+    "cover": {
+      "projects-list": {
+        "default": true,
+        "empty": true,
+        "loading": true,
+        "error": true
+      },
+      "project-detail": {
+        "default": true,
+        "empty": true,
+        "loading": true,
+        "error": true
+      }
+    },
+    "tokensOk": "[\"#2563EB\",6,12,12,28,16,\"accent\"]",
+    "notes": "- Every screen has its empty, loading and error states",
+    "plan": {
+      "forBrief": "Project: Project Planner (apps/project-planner/)\n\n## Design tokens\n- color.accent: #2563EB\n- radius.control: 6px\n- radius.card: 12px\n- space.row: 12px\n- text.title: 28px\n- radius.chip: 16px\n- header.style: accent\n\n## Screens and states\n- Projects List: default, empty, loading, error\n- Project Detail: default, empty, loading, error\n\n## Changes already in the code\n- Page title size: 28px\n- New screen: Project Detail\n- New screen: Projects List\n\n## Acceptance notes\n- Every screen has its empty, loading and error states",
+      "forAgent": "You are building the Project Planner app in apps/project-planner/.\n\nThe designer has handed off this design with Agent Zero Studio. Apply their exact intent:\n\n## Design tokens (set these CSS variables in src/theme/tokens.css)\n- --color-accent: #2563EB\n- --radius-control: 6px\n- --radius-card: 12px\n- --space-row: 12px\n- --text-title: 28px\n- --radius-chip: 16px\n- --header-style: accent\n\n## Screens to build\n- Projects List (id: projects-list): default, empty, loading, error states\n- Project Detail (id: project-detail): default, empty, loading, error states\n\n## What's already done\n- Page title size: 28px\n- New screen: Project Detail\n- New screen: Projects List\n\n## Designer's notes\n- Every screen has its empty, loading and error states\n\n## Agent Zero Studio conventions (keep every one)\n- Only change files inside apps/project-planner/.\n- The app is a static web page: apps/project-planner/index.html plus the CSS and JS files it links by relative path. No build step, no network requests, no ES module imports. Studio previews these files directly.\n- Design tokens: declare these CSS variables in apps/project-planner/src/theme/tokens.css on :root and read every themed value from them: --color-accent, --color-on-accent, --radius-control, --radius-card, --space-row, --text-title, --radius-chip, --header-style (light or accent). Style the accent header with :root[data-studio-header=\"accent\"], and set that attribute from --header-style in app JS.\n- Screens: wrap each screen in an element with data-studio-screen=\"<id>\" and data-studio-screen-name=\"<Name>\". Mark a screen you drafted, and the designer has not accepted yet, with data-studio-draft.\n- States: every screen has default, empty, loading and error states. Put each state's markup in an element with data-studio-when=\"<state>\" (space separated when shared). Outside Studio, read ?state= from the URL and set it as <html data-studio-state>.\n- Selectable elements: give each designable element data-studio-id (unique), data-studio-type (page, header, heading, button, button-ghost, input, row, card, chip or text), data-studio-name (plain English), data-studio-source (file and line, e.g. index.html:42), data-studio-tokens (the token names it reads, e.g. \"color.accent radius.control\"), and data-studio-text=\"<key>\" where a designer may edit the text.\n\nAll the text content is in the committed.texts object in .studio/state.json. Use those exact keys in data-studio-text attributes, and render the text from that object."
+    }
+  }
+}
