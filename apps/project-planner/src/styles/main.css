@@ -254,6 +254,7 @@ button {
 
 .project-card.card-overdue {
   border-left: 4px solid var(--color-error);
+  background-color: #fef3c7;
 }
 
 .card-header {
