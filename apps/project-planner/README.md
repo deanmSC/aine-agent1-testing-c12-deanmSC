@@ -17,11 +17,12 @@ This web app provides a comprehensive project planning interface with timeline t
 ### Projects List
 - Grid layout of project cards
 - Visual progress indicators
-- Status badges (Active, Completed, Overdue)
+- **Color-coded status badges** - Active (blue), Completed (green), Overdue (red)
+- **Smart sorting** - Overdue projects automatically appear at the top
 - Team member avatars
 - Task completion counts
 - Search and filter capabilities
-- **NEW: Date range filter** - Filter projects by start and end dates
+- **Date range filter** - Filter projects by start and end dates
 - **NEW: Export to Excel** - Export filtered projects to Excel format (.xls)
 
 ### Project Detail
@@ -110,8 +111,22 @@ showProjectsList()
 
 ## Testing
 
-The app includes automated tests for the new date filtering and export features. To run the tests:
+The app includes comprehensive automated tests for all features. To run the tests:
 
+### Sorting & Color-Coding Tests
+1. Open `tests/test-sorting-colors.html` in your web browser
+2. Click "Run All Tests" to execute the test suite
+3. View the results to ensure all features are working correctly
+
+**Test coverage includes**:
+- Overdue items sorting to the top
+- Non-overdue items maintaining order
+- Multiple overdue items handling
+- Status color class validation (Active, Completed, Overdue)
+- Edge cases (empty lists, single items, all overdue)
+- Sorting with filtered results
+
+### Date Filtering & Export Tests
 1. Open `tests/test-filters.html` in your web browser
 2. Click "Run All Tests" to execute the test suite
 3. View the results to ensure all features are working correctly
