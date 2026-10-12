@@ -125,6 +125,10 @@
         });
         // Add active class to clicked chip
         this.classList.add('active');
+        
+        // Apply the filter based on which chip was clicked
+        const chipId = this.getAttribute('data-studio-id');
+        applyStatusFilter(chipId);
       });
     });
 
@@ -235,6 +239,52 @@
 
     updateProjectsDisplay();
     console.log('Date filter applied. Showing ' + filteredProjects.length + ' projects.');
+  }
+
+  // Apply status filter based on chip selection
+  function applyStatusFilter(chipId) {
+    var projectsGrid = document.querySelector('.projects-grid');
+    if (!projectsGrid) return;
+
+    var allCards = projectsGrid.querySelectorAll('.project-card');
+    
+    // Show all cards by default
+    allCards.forEach(function(card) {
+      card.style.display = 'block';
+    });
+
+    // Apply filter based on chip
+    if (chipId === 'chip-all') {
+      // Show all projects
+      console.log('Showing all projects');
+    } else if (chipId === 'chip-active') {
+      // Show only Active projects
+      allCards.forEach(function(card) {
+        var statusBadge = card.querySelector('.status-active');
+        if (!statusBadge) {
+          card.style.display = 'none';
+        }
+      });
+      console.log('Showing Active projects only');
+    } else if (chipId === 'chip-completed') {
+      // Show only Completed projects
+      allCards.forEach(function(card) {
+        var statusBadge = card.querySelector('.status-completed');
+        if (!statusBadge) {
+          card.style.display = 'none';
+        }
+      });
+      console.log('Showing Completed projects only');
+    } else if (chipId === 'chip-overdue') {
+      // Show only Overdue projects
+      allCards.forEach(function(card) {
+        var hasOverdueClass = card.classList.contains('card-overdue');
+        if (!hasOverdueClass) {
+          card.style.display = 'none';
+        }
+      });
+      console.log('Showing Overdue projects only');
+    }
   }
 
   // Clear date range filter
