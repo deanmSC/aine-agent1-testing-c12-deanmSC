@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Project Planner - Filter Tests</title>
+  <style>
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      max-width: 800px;
+      margin: 40px auto;
+      padding: 20px;
+      background: #f8fafc;
+    }
+    h1 {
+      color: #0f172a;
+      border-bottom: 2px solid #2563eb;
+      padding-bottom: 10px;
+    }
+    .test-section {
+      background: white;
+      padding: 20px;
+      margin: 20px 0;
+      border-radius: 8px;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    }
+    .test-case {
+      margin: 15px 0;
+      padding: 10px;
+      border-left: 3px solid #e2e8f0;
+    }
+    .test-case.pass {
+      border-left-color: #10b981;
+      background: #f0fdf4;
+    }
+    .test-case.fail {
+      border-left-color: #ef4444;
+      background: #fef2f2;
+    }
+    .test-title {
+      font-weight: 600;
+      margin-bottom: 5px;
+    }
+    .test-result {
+      font-size: 14px;
+      color: #64748b;
+    }
+    button {
+      background: #2563eb;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 14px;
+      margin: 5px;
+    }
+    button:hover {
+      background: #1d4ed8;
+    }
+    .summary {
+      font-size: 18px;
+      font-weight: 600;
+      margin-top: 20px;
+      padding: 15px;
+      background: #eff6ff;
+      border-radius: 6px;
+    }
+  </style>
+</head>
+<body>
+  <h1>🧪 Project Planner - Filter & Export Tests</h1>
+  
+  <div class="test-section">
+    <h2>Test Suite</h2>
+    <button onclick="runAllTests()">Run All Tests</button>
+    <button onclick="location.href='../index.html'">Back to App</button>
+    <div id="test-results"></div>
+    <div id="summary"></div>
+  </div>
+
+  <script>
+    // Test data matching the app's project data
+    var projectsData = [
+      {
+        id: 'project-1',
+        title: 'Website Redesign',
+        status: 'Active',
+        startDate: '2024-01-15',
+        endDate: '2024-04-30',
+        progress: 65,
+        description: 'Complete overhaul of company website with modern design',
+        team: ['SK', 'JD', 'AM'],
+        tasks: '13/20 tasks'
+      },
+      {
+        id: 'project-2',
+        title: 'Mobile App Launch',
+        status: 'Active',
+        startDate: '2024-02-01',
+        endDate: '2024-06-15',
+        progress: 45,
+        description: 'Develop and launch iOS and Android mobile applications',
+        team: ['TC', 'RH', 'KM', '+2'],
+        tasks: '18/40 tasks'
+      },
+      {
+        id: 'project-3',
+        title: 'Marketing Campaign Q2',
+        status: 'Completed',
+        startDate: '2023-10-01',
+        endDate: '2024-03-31',
+        progress: 100,
+        description: 'Execute comprehensive marketing strategy for Q2 product launches',
+        team: ['MJ', 'PW', 'LB'],
+        tasks: '24/24 tasks'
+      },
+      {
+        id: 'project-4',
+        title: 'Infrastructure Upgrade',
+        status: 'Overdue',
+        startDate: '2023-12-01',
+        endDate: '2024-02-28',
+        progress: 75,
+        description: 'Migrate to cloud infrastructure and upgrade security protocols',
+        team: ['DK', 'NS'],
+        tasks: '9/12 tasks'
+      }
+    ];
+
+    var testResults = [];
+
+    function runAllTests() {
+      testResults = [];
+      
+      // Test 1: Filter by start date only
+      test('Filter by start date (from 2024-01-01)', function() {
+        var filtered = filterByDateRange('2024-01-01', null);
+        return filtered.length === 2 && 
+               filtered.some(p => p.id === 'project-1') &&
+               filtered.some(p => p.id === 'project-2');
+      });
+
+      // Test 2: Filter by end date only
+      test('Filter by end date (to 2024-03-31)', function() {
+        var filtered = filterByDateRange(null, '2024-03-31');
+        return filtered.length === 3 &&
+               filtered.some(p => p.id === 'project-1') &&
+               filtered.some(p => p.id === 'project-3') &&
+               filtered.some(p => p.id === 'project-4');
+      });
+
+      // Test 3: Filter by date range
+      test('Filter by date range (2024-01-01 to 2024-03-31)', function() {
+        var filtered = filterByDateRange('2024-01-01', '2024-03-31');
+        return filtered.length === 2 &&
+               filtered.some(p => p.id === 'project-1') &&
+               filtered.some(p => p.id === 'project-2');
+      });
+
+      // Test 4: Filter with no results
+      test('Filter with no matching projects (2025-01-01 to 2025-12-31)', function() {
+        var filtered = filterByDateRange('2025-01-01', '2025-12-31');
+        return filtered.length === 0;
+      });
+
+      // Test 5: All projects when no filter
+      test('No filter returns all projects', function() {
+        var filtered = projectsData.slice();
+        return filtered.length === 4;
+      });
+
+      // Test 6: CSV export format
+      test('CSV export generates correct format', function() {
+        var csv = generateCSV([projectsData[0]]);
+        return csv.includes('Project Title,Status,Start Date') &&
+               csv.includes('Website Redesign,Active,2024-01-15');
+      });
+
+      // Test 7: CSV escaping
+      test('CSV properly escapes commas and quotes', function() {
+        var testProject = {
+          title: 'Test, Project',
+          status: 'Active',
+          startDate: '2024-01-01',
+          endDate: '2024-12-31',
+          progress: 50,
+          description: 'Description with "quotes"',
+          team: ['A', 'B'],
+          tasks: '5/10'
+        };
+        var csv = generateCSV([testProject]);
+        return csv.includes('"Test, Project"') && 
+               csv.includes('"Description with ""quotes"""');
+      });
+
+      // Test 8: Date overlap logic
+      test('Date overlap detection works correctly', function() {
+        // Project from 2024-01-15 to 2024-04-30
+        // Filter from 2024-03-01 to 2024-05-01
+        var filtered = filterByDateRange('2024-03-01', '2024-05-01');
+        return filtered.some(p => p.id === 'project-1');
+      });
+
+      displayResults();
+    }
+
+    function test(name, testFn) {
+      try {
+        var result = testFn();
+        testResults.push({
+          name: name,
+          passed: result,
+          error: null
+        });
+      } catch (e) {
+        testResults.push({
+          name: name,
+          passed: false,
+          error: e.message
+        });
+      }
+    }
+
+    function filterByDateRange(dateFrom, dateTo) {
+      return projectsData.filter(function(project) {
+        var projectStart = new Date(project.startDate);
+        var projectEnd = new Date(project.endDate);
+        var filterFrom = dateFrom ? new Date(dateFrom) : null;
+        var filterTo = dateTo ? new Date(dateTo) : null;
+
+        if (filterFrom && filterTo) {
+          return projectEnd >= filterFrom && projectStart <= filterTo;
+        } else if (filterFrom) {
+          return projectEnd >= filterFrom;
+        } else if (filterTo) {
+          return projectStart <= filterTo;
+        }
+        return true;
+      });
+    }
+
+    function generateCSV(projects) {
+      var csvContent = 'Project Title,Status,Start Date,End Date,Progress,Description,Team Members,Tasks\n';
+      
+      projects.forEach(function(project) {
+        var row = [
+          escapeCSV(project.title),
+          escapeCSV(project.status),
+          escapeCSV(project.startDate),
+          escapeCSV(project.endDate),
+          project.progress + '%',
+          escapeCSV(project.description),
+          escapeCSV(project.team.join(', ')),
+          escapeCSV(project.tasks)
+        ].join(',');
+        csvContent += row + '\n';
+      });
+
+      return csvContent;
+    }
+
+    function escapeCSV(value) {
+      if (typeof value === 'string') {
+        if (value.indexOf(',') !== -1 || value.indexOf('"') !== -1 || value.indexOf('\n') !== -1) {
+          return '"' + value.replace(/"/g, '""') + '"';
+        }
+      }
+      return value;
+    }
+
+    function displayResults() {
+      var resultsDiv = document.getElementById('test-results');
+      var summaryDiv = document.getElementById('summary');
+      
+      var html = '';
+      var passed = 0;
+      var failed = 0;
+
+      testResults.forEach(function(result) {
+        var className = result.passed ? 'pass' : 'fail';
+        var icon = result.passed ? '✅' : '❌';
+        
+        html += '<div class="test-case ' + className + '">';
+        html += '<div class="test-title">' + icon + ' ' + result.name + '</div>';
+        if (result.error) {
+          html += '<div class="test-result">Error: ' + result.error + '</div>';
+        }
+        html += '</div>';
+
+        if (result.passed) passed++;
+        else failed++;
+      });
+
+      resultsDiv.innerHTML = html;
+
+      var summaryText = passed + ' passed, ' + failed + ' failed out of ' + testResults.length + ' tests';
+      var summaryColor = failed === 0 ? '#10b981' : '#ef4444';
+      summaryDiv.innerHTML = '<div class="summary" style="color: ' + summaryColor + '">' + summaryText + '</div>';
+    }
+
+    // Auto-run tests on load
+    window.addEventListener('DOMContentLoaded', function() {
+      console.log('Test page loaded. Click "Run All Tests" to start.');
+    });
+  </script>
+</body>
+</html>

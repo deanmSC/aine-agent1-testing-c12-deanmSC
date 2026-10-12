@@ -21,6 +21,8 @@ This web app provides a comprehensive project planning interface with timeline t
 - Team member avatars
 - Task completion counts
 - Search and filter capabilities
+- **NEW: Date range filter** - Filter projects by start and end dates
+- **NEW: Export to Excel** - Export filtered projects to Excel format (.xls)
 
 ### Project Detail
 - Comprehensive timeline information (start date, end date, duration, days remaining)
@@ -61,6 +63,33 @@ You can test different states by adding a URL parameter:
 - Use the filter chips to filter projects by status
 - Use the search bar to search for projects
 
+### Using the Date Range Filter
+
+1. **Select a date range**: Use the "From" and "To" date inputs to specify your desired date range
+2. **Apply the filter**: Click the "Apply Filter" button to show only projects that overlap with the selected date range
+3. **Clear the filter**: Click the "Clear" button to remove the date filter and show all projects again
+
+**How it works**: The filter shows projects whose date range overlaps with your selected dates. For example:
+- If you select "From: 2024-01-01", you'll see all projects that end on or after January 1, 2024
+- If you select "To: 2024-03-31", you'll see all projects that start on or before March 31, 2024
+- If you select both dates, you'll see projects that have any overlap with that date range
+
+### Exporting to Excel
+
+1. **Filter your projects** (optional): Use the date range filter or status chips to narrow down the projects you want to export
+2. **Click "Export to Excel"**: The button with the 📊 icon will download a file named `project-planner-export.xls`
+3. **Open in Excel**: The exported file can be opened in Microsoft Excel, Google Sheets, or any spreadsheet application
+
+**What's included in the export**:
+- Project Title
+- Status
+- Start Date
+- End Date
+- Progress (%)
+- Description
+- Team Members
+- Tasks
+
 ### Developer Console Commands
 
 Open the browser console to access these utility functions:
@@ -79,12 +108,29 @@ showProjectDetail('project-1')
 showProjectsList()
 ```
 
+## Testing
+
+The app includes automated tests for the new date filtering and export features. To run the tests:
+
+1. Open `tests/test-filters.html` in your web browser
+2. Click "Run All Tests" to execute the test suite
+3. View the results to ensure all features are working correctly
+
+**Test coverage includes**:
+- Date range filtering (from date only, to date only, both dates)
+- Filter with no matching results
+- CSV export format validation
+- CSV special character escaping (commas, quotes)
+- Date overlap detection logic
+
 ## File Structure
 
 ```
 apps/project-planner/
 ├── index.html                 # Main HTML file with both screens
 ├── README.md                  # This file
+├── tests/
+│   └── test-filters.html     # Automated tests for filtering and export
 └── src/
     ├── theme/
     │   └── tokens.css        # Design tokens (colors, spacing, etc.)

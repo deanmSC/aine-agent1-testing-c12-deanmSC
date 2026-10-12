@@ -3,6 +3,56 @@
 (function() {
   'use strict';
 
+  // Project data with dates for filtering
+  var projectsData = [
+    {
+      id: 'project-1',
+      title: 'Website Redesign',
+      status: 'Active',
+      startDate: '2024-01-15',
+      endDate: '2024-04-30',
+      progress: 65,
+      description: 'Complete overhaul of company website with modern design',
+      team: ['SK', 'JD', 'AM'],
+      tasks: '13/20 tasks'
+    },
+    {
+      id: 'project-2',
+      title: 'Mobile App Launch',
+      status: 'Active',
+      startDate: '2024-02-01',
+      endDate: '2024-06-15',
+      progress: 45,
+      description: 'Develop and launch iOS and Android mobile applications',
+      team: ['TC', 'RH', 'KM', '+2'],
+      tasks: '18/40 tasks'
+    },
+    {
+      id: 'project-3',
+      title: 'Marketing Campaign Q2',
+      status: 'Completed',
+      startDate: '2023-10-01',
+      endDate: '2024-03-31',
+      progress: 100,
+      description: 'Execute comprehensive marketing strategy for Q2 product launches',
+      team: ['MJ', 'PW', 'LB'],
+      tasks: '24/24 tasks'
+    },
+    {
+      id: 'project-4',
+      title: 'Infrastructure Upgrade',
+      status: 'Overdue',
+      startDate: '2023-12-01',
+      endDate: '2024-02-28',
+      progress: 75,
+      description: 'Migrate to cloud infrastructure and upgrade security protocols',
+      team: ['DK', 'NS'],
+      tasks: '9/12 tasks'
+    }
+  ];
+
+  var filteredProjects = projectsData.slice(); // Copy of projects for filtering
+
   // Initialize the app when DOM is ready
   document.addEventListener('DOMContentLoaded', function() {
     initializeApp();
@@ -122,6 +172,149 @@
         alert('Edit project dialog would open here');
       });
     }
+
+    // Date filter - Apply button
+    const applyFilterButton = document.querySelector('[data-studio-id="btn-apply-filter"]');
+    if (applyFilterButton) {
+      applyFilterButton.addEventListener('click', function() {
+        applyDateFilter();
+      });
+    }
+
+    // Date filter - Clear button
+    const clearFilterButton = document.querySelector('[data-studio-id="btn-clear-filter"]');
+    if (clearFilterButton) {
+      clearFilterButton.addEventListener('click', function() {
+        clearDateFilter();
+      });
+    }
+
+    // Export to Excel button
+    const exportButton = document.querySelector('[data-studio-id="btn-export-excel"]');
+    if (exportButton) {
+      exportButton.addEventListener('click', function() {
+        exportToExcel();
+      });
+    }
+
+    // Back button
+    const backButton = document.querySelector('[data-studio-id="btn-back"]');
+    if (backButton) {
+      backButton.addEventListener('click', function() {
+        showProjectsList();
+      });
+    }
+  }
+
+  // Apply date range filter
+  function applyDateFilter() {
+    var dateFrom = document.getElementById('date-from').value;
+    var dateTo = document.getElementById('date-to').value;
+
+    if (!dateFrom && !dateTo) {
+      alert('Please select at least one date (From or To)');
+      return;
+    }
+
+    filteredProjects = projectsData.filter(function(project) {
+      var projectStart = new Date(project.startDate);
+      var projectEnd = new Date(project.endDate);
+      var filterFrom = dateFrom ? new Date(dateFrom) : null;
+      var filterTo = dateTo ? new Date(dateTo) : null;
+
+      // Check if project date range overlaps with filter date range
+      if (filterFrom && filterTo) {
+        return projectEnd >= filterFrom && projectStart <= filterTo;
+      } else if (filterFrom) {
+        return projectEnd >= filterFrom;
+      } else if (filterTo) {
+        return projectStart <= filterTo;
+      }
+      return true;
+    });
+
+    updateProjectsDisplay();
+    console.log('Date filter applied. Showing ' + filteredProjects.length + ' projects.');
+  }
+
+  // Clear date range filter
+  function clearDateFilter() {
+    document.getElementById('date-from').value = '';
+    document.getElementById('date-to').value = '';
+    filteredProjects = projectsData.slice();
+    updateProjectsDisplay();
+    console.log('Date filter cleared. Showing all ' + filteredProjects.length + ' projects.');
+  }
+
+  // Update the projects display based on filtered data
+  function updateProjectsDisplay() {
+    var projectsGrid = document.querySelector('.projects-grid');
+    if (!projectsGrid) return;
+
+    // Hide all project cards first
+    var allCards = projectsGrid.querySelectorAll('.project-card');
+    allCards.forEach(function(card) {
+      card.style.display = 'none';
+    });
+
+    // Show only filtered projects
+    filteredProjects.forEach(function(project) {
+      var card = projectsGrid.querySelector('[data-studio-id="card-' + project.id + '"]');
+      if (card) {
+        card.style.display = 'block';
+      }
+    });
+
+    // Show message if no projects match
+    if (filteredProjects.length === 0) {
+      console.log('No projects match the selected date range.');
+    }
+  }
+
+  // Export projects to Excel (CSV format with .xls extension)
+  function exportToExcel() {
+    // Prepare CSV data
+    var csvContent = 'Project Title,Status,Start Date,End Date,Progress,Description,Team Members,Tasks\n';
+    
+    filteredProjects.forEach(function(project) {
+      var row = [
+        escapeCSV(project.title),
+        escapeCSV(project.status),
+        escapeCSV(project.startDate),
+        escapeCSV(project.endDate),
+        project.progress + '%',
+        escapeCSV(project.description),
+        escapeCSV(project.team.join(', ')),
+        escapeCSV(project.tasks)
+      ].join(',');
+      csvContent += row + '\n';
+    });
+
+    // Create blob and download
+    var blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
+    var link = document.createElement('a');
+    var url = URL.createObjectURL(blob);
+    
+    link.setAttribute('href', url);
+    link.setAttribute('download', 'project-planner-export.xls');
+    link.style.visibility = 'hidden';
+    
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+    
+    console.log('Exported ' + filteredProjects.length + ' projects to Excel.');
+  }
+
+  // Escape CSV values
+  function escapeCSV(value) {
+    if (typeof value === 'string') {
+      // Escape quotes and wrap in quotes if contains comma, quote, or newline
+      if (value.indexOf(',') !== -1 || value.indexOf('"') !== -1 || value.indexOf('\n') !== -1) {
+        return '"' + value.replace(/"/g, '""') + '"';
+      }
+    }
+    return value;
   }
 
   // Navigate to project detail screen
