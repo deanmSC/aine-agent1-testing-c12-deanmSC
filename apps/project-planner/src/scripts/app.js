@@ -246,10 +246,28 @@
     console.log('Date filter cleared. Showing all ' + filteredProjects.length + ' projects.');
   }
 
+  // Sort projects with overdue items at the top
+  function sortProjects(projects) {
+    return projects.slice().sort(function(a, b) {
+      // Overdue items come first
+      if (a.status === 'Overdue' && b.status !== 'Overdue') {
+        return -1;
+      }
+      if (a.status !== 'Overdue' && b.status === 'Overdue') {
+        return 1;
+      }
+      // For items with the same status, maintain original order
+      return 0;
+    });
+  }
+
   // Update the projects display based on filtered data
   function updateProjectsDisplay() {
     var projectsGrid = document.querySelector('.projects-grid');
     if (!projectsGrid) return;
+
+    // Sort projects to put overdue items at the top
+    var sortedProjects = sortProjects(filteredProjects);
 
     // Hide all project cards first
     var allCards = projectsGrid.querySelectorAll('.project-card');
@@ -257,11 +275,13 @@
       card.style.display = 'none';
     });
 
-    // Show only filtered projects
-    filteredProjects.forEach(function(project) {
+    // Show filtered projects in sorted order
+    sortedProjects.forEach(function(project, index) {
       var card = projectsGrid.querySelector('[data-studio-id="card-' + project.id + '"]');
       if (card) {
         card.style.display = 'block';
+        // Set order to control visual position
+        card.style.order = index;
       }
     });
 
