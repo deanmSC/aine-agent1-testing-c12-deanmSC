@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Analyst PR E2E 20261012 - Team Task Tracker</title>
+  <link rel="stylesheet" href="src/styles/main.css">
+</head>
+<body>
+  <!-- Main Screen -->
+  <div id="main-screen">
+    
+    <!-- Header -->
+    <header>
+      <h1>Team Task Tracker</h1>
+      <button class="btn-primary" id="btn-add-task" aria-label="Add new task">+ Add Task</button>
+    </header>
+
+    <div class="container">
+      
+      <!-- Summary Section -->
+      <section class="summary-section">
+        <h2>Summary</h2>
+        <div class="summary-grid">
+          <div class="summary-card">
+            <h3>Total Tasks</h3>
+            <div class="count" id="total-tasks">0</div>
+          </div>
+          <div class="summary-card">
+            <h3>Pending</h3>
+            <div class="count" id="pending-count">0</div>
+          </div>
+          <div class="summary-card">
+            <h3>Completed</h3>
+            <div class="count" id="completed-count">0</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Search and Filter Section -->
+      <section class="filter-section">
+        <div class="filter-controls">
+          <div class="search-box">
+            <label for="search-input" class="visually-hidden">Search tasks</label>
+            <input 
+              type="text" 
+              id="search-input" 
+              placeholder="Search tasks..." 
+              aria-label="Search tasks by title or description">
+          </div>
+          <div class="filter-group">
+            <label for="status-filter" class="filter-label">Status:</label>
+            <select id="status-filter" aria-label="Filter tasks by status">
+              <option value="all">All</option>
+              <option value="pending">Pending</option>
+              <option value="completed">Completed</option>
+            </select>
+          </div>
+          <button class="btn-secondary" id="btn-clear-filters" aria-label="Clear all filters">Clear Filters</button>
+        </div>
+      </section>
+
+      <!-- Tasks List Section -->
+      <section class="tasks-section">
+        <h2>Tasks</h2>
+        
+        <!-- Empty State -->
+        <div id="empty-state" class="empty-state" style="display: none;">
+          <div class="empty-icon">📋</div>
+          <h3>No tasks yet</h3>
+          <p>Get started by adding your first task to track your team's work.</p>
+          <button class="btn-primary" id="btn-add-first-task" aria-label="Add your first task">Add Your First Task</button>
+        </div>
+
+        <!-- Tasks Table -->
+        <div id="tasks-table-container">
+          <table class="tasks-table" role="table" aria-label="Team tasks list">
+            <thead>
+              <tr>
+                <th scope="col">Status</th>
+                <th scope="col">Task</th>
+                <th scope="col">Description</th>
+                <th scope="col">Assigned To</th>
+                <th scope="col">Actions</th>
+              </tr>
+            </thead>
+            <tbody id="tasks-tbody">
+              <!-- Tasks will be inserted here by JavaScript -->
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+    </div>
+  </div>
+
+  <!-- Add/Edit Task Modal -->
+  <div id="task-modal" class="modal-overlay" role="dialog" aria-labelledby="modal-title" aria-modal="true">
+    <div class="modal">
+      <div class="modal-header">
+        <h2 id="modal-title">Add Task</h2>
+      </div>
+      <div class="modal-body">
+        <form id="task-form">
+          <input type="hidden" id="task-id">
+          
+          <div class="form-group">
+            <label for="task-title">Task Title *</label>
+            <input type="text" id="task-title" required aria-required="true">
+          </div>
+
+          <div class="form-group">
+            <label for="task-description">Description</label>
+            <textarea id="task-description" rows="3" aria-label="Task description"></textarea>
+          </div>
+
+          <div class="form-group">
+            <label for="task-assignee">Assigned To *</label>
+            <input type="text" id="task-assignee" required aria-required="true">
+          </div>
+
+          <div class="form-group">
+            <label for="task-status">Status *</label>
+            <select id="task-status" required aria-required="true">
+              <option value="pending">Pending</option>
+              <option value="completed">Completed</option>
+            </select>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn-secondary" id="btn-cancel" aria-label="Cancel and close">Cancel</button>
+        <button type="submit" class="btn-primary" id="btn-save" form="task-form" aria-label="Save task">Save Task</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Delete Confirmation Modal -->
+  <div id="delete-modal" class="modal-overlay" role="dialog" aria-labelledby="delete-modal-title" aria-modal="true">
+    <div class="modal">
+      <div class="modal-header">
+        <h2 id="delete-modal-title">Confirm Delete</h2>
+      </div>
+      <div class="modal-body">
+        <p>Are you sure you want to delete this task? This action cannot be undone.</p>
+        <p style="margin-top: 12px;"><strong id="delete-task-info"></strong></p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn-secondary" id="btn-cancel-delete" aria-label="Cancel delete">Cancel</button>
+        <button type="button" class="btn-danger" id="btn-confirm-delete" aria-label="Confirm delete task">Delete</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="src/scripts/app.js"></script>
+</body>
+</html>
